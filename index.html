@@ -107,28 +107,23 @@ button:hover{
 <div class="popup" id="popup">
     <div class="popup-box">
         <img id="popupImage" src="rose_1.png" alt="Valentine">
-        <h3 id="popupText">happy valentine's day Kub ❤️</h3>
+        <h3 id="popupText"></h3>
 
         <div style="margin-top:15px;">
-            <button id="prevBtn" onclick="prevSlide()" style="display:none;">◀ Previous</button>
             <button id="nextBtn" onclick="nextSlide()">Next ▶</button>
         </div>
     </div>
 </div>
 
-
-
 <script>
 const correctPassword = "1349";
 let slideIndex = 1;
 
-// ดึงชื่อจาก URL
+// ดึงชื่อจาก URL แบบ ?name=Min
 const urlParams = new URLSearchParams(window.location.search);
-const personName = urlParams.get("Paxxx");
+const personName = urlParams.get("name") || "My Love";
 
-if(personName){
-    document.title = "For " + personName + " ❤️";
-}
+document.title = "For " + personName + " ❤️";
 
 function checkPassword(){
     const input = document.getElementById("password").value;
@@ -136,6 +131,7 @@ function checkPassword(){
 
     if(input === correctPassword){
         document.getElementById("popup").style.display="flex";
+        document.getElementById("loginBox").style.display="none";
         error.style.display="none";
         slideIndex = 1;
         showSlide();
@@ -147,19 +143,16 @@ function checkPassword(){
 function showSlide(){
     const image = document.getElementById("popupImage");
     const text = document.getElementById("popupText");
-    const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
 
     if(slideIndex === 1){
         image.src = "rose_1.png";
-        text.innerText = "happy valentine's day Kub ❤️";
-        prevBtn.style.display = "none";
+        text.innerText = "Happy Valentine's Day " + personName + " ❤️";
         nextBtn.innerText = "Next ▶";
     }
     else if(slideIndex === 2){
         image.src = "sunflower.png";
-        text.innerText = "ขอโทษที่ไม่มีดอกไม้จริง ๆ ให้นะคะที่รัก 💌";
-        prevBtn.style.display = "inline-block";
+        text.innerText = "ขอโทษที่ไม่มีดอกไม้จริง ๆ ให้นะคะ " + personName + " 💌";
         nextBtn.innerText = "Close ✖";
     }
 }
@@ -173,13 +166,7 @@ function nextSlide(){
         slideIndex = 1;
     }
 }
-
-function prevSlide(){
-    slideIndex = 1;
-    showSlide();
-}
 </script>
 
 </body>
 </html>
-
