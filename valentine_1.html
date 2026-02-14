@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secret Letter ❤️</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ---------- Login ---------- */
+.container{
+    text-align:center;
+}
+
+input{
+    padding:10px;
+    border-radius:20px;
+    border:none;
+    margin-top:10px;
+    text-align:center;
+}
+
+button{
+    padding:10px 20px;
+    margin-top:15px;
+    border:none;
+    border-radius:20px;
+    background:#ff4d6d;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+.error{
+    color:white;
+    margin-top:10px;
+    display:none;
+}
+
+/* ---------- Popup ---------- */
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-box{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    text-align:center;
+    width:80%;
+    max-width:500px;
+    animation:fadeIn 0.5s ease-in-out;
+}
+
+.popup-box img{
+    width:100%;
+    height:auto;
+    border-radius:15px;
+}
+
+.popup-box h3{
+    margin-top:15px;
+    color:#ff4d6d;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 Login -->
+<div class="container" id="loginBox">
+    <h2>💌 Password 💌</h2>
+    <input type="password" id="password" placeholder="You and me....🫶">
+    <br>
+    <button onclick="checkPassword()">Open</button>
+    <div class="error" id="errorText">Try Again babe 😝</div>
+</div>
+
+<!-- 💕 Popup -->
+<div class="popup" id="popup">
+    <div class="popup-box">
+        <img id="popupImage" src="rose_1.png" alt="Valentine">
+        <h3 id="popupText">happy valentine's day Kub ❤️</h3>
+
+        <div style="margin-top:15px;">
+            <button id="prevBtn" onclick="prevSlide()" style="display:none;">◀ Previous</button>
+            <button id="nextBtn" onclick="nextSlide()">Next ▶</button>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+const correctPassword = "1349";
+let slideIndex = 1;
+
+function checkPassword(){
+    const input = document.getElementById("password").value;
+    const error = document.getElementById("errorText");
+
+    if(input === correctPassword){
+        document.getElementById("popup").style.display="flex";
+        error.style.display="none";
+        slideIndex = 1;
+        showSlide();
+    }else{
+        error.style.display="block";
+    }
+}
+
+function showSlide(){
+    const image = document.getElementById("popupImage");
+    const text = document.getElementById("popupText");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    if(slideIndex === 1){
+        image.src = "rose_1.png";
+        text.innerText = "happy valentine's day Kub ❤️";
+        prevBtn.style.display = "none";
+        nextBtn.innerText = "Next ▶";
+    }
+    else if(slideIndex === 2){
+        image.src = "sunflower.png";
+        text.innerText = "ขอโทษที่ไม่มีดอกไม้จริง ๆ ให้นะคะที่รัก 💌";
+        prevBtn.style.display = "inline-block";
+        nextBtn.innerText = "Close ✖";
+    }
+}
+
+function nextSlide(){
+    if(slideIndex === 1){
+        slideIndex = 2;
+        showSlide();
+    }else{
+        document.getElementById("popup").style.display="none";
+        slideIndex = 1;
+    }
+}
+
+function prevSlide(){
+    slideIndex = 1;
+    showSlide();
+}
+</script>
+
+</body>
+</html>
