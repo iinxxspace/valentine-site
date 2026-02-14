@@ -122,6 +122,14 @@ button:hover{
 const correctPassword = "1349";
 let slideIndex = 1;
 
+// ดึงชื่อจาก URL
+const urlParams = new URLSearchParams(window.location.search);
+const personName = urlParams.get("Paxxx");
+
+if(personName){
+    document.title = "For " + personName + " ❤️";
+}
+
 function checkPassword(){
     const input = document.getElementById("password").value;
     const error = document.getElementById("errorText");
@@ -174,3 +182,4 @@ function prevSlide(){
 
 </body>
 </html>
+
